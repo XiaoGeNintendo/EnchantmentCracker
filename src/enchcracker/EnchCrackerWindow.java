@@ -167,8 +167,8 @@ public class EnchCrackerWindow extends StyledFrameMinecraft {
 			int shit=JOptionPane.showConfirmDialog(null, "Wanna Input Player Seed?","Software F**KED",JOptionPane.YES_NO_OPTION);
 			if(shit==JOptionPane.YES_OPTION){
 				String ret=JOptionPane.showInputDialog("Quick input your seed here,in hex ok?");
-				playerSeed=Integer.parseInt(ret, 16);
-				Log.info("Player Seed Forcibly Set To "+playerSeed);
+				playerSeed=Long.parseLong(ret, 16);
+				Log.infoWithDisplay("Player Seed Forcibly Set To "+playerSeed);
 			}
 		}catch(Exception e){
 			assertform(e+"");
