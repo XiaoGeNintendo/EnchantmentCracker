@@ -61,6 +61,9 @@ public class EnchCrackerWindow extends StyledFrameMinecraft {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		
+		
 		Thread.setDefaultUncaughtExceptionHandler((t, e) -> {
 			// Write to log
 			Log.fatal("An unexpected error occurred", e);
@@ -156,8 +159,21 @@ public class EnchCrackerWindow extends StyledFrameMinecraft {
 	private static CardLayout cards = new CardLayout();
 	final ImagePanel itemPicker;
 	public EnchCrackerWindow() {
+		
+		
 		super(cards, new String[]{"FindSeed", "Manip", "About"}, new String[]{"Enchantment Cracker", "Enchantment Calculator", "About"});
 
+		try{
+			int shit=JOptionPane.showConfirmDialog(null, "Wanna Input Player Seed?","Software F**KED",JOptionPane.YES_NO_OPTION);
+			if(shit==JOptionPane.YES_OPTION){
+				String ret=JOptionPane.showInputDialog("Quick input your seed here,in hex ok?");
+				playerSeed=Integer.parseInt(ret, 16);
+				Log.info("Player Seed Forcibly Set To "+playerSeed);
+			}
+		}catch(Exception e){
+			assertform(e+"");
+		}
+		
 		setTitle("Enchantment Cracker");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
@@ -483,6 +499,8 @@ public class EnchCrackerWindow extends StyledFrameMinecraft {
 			}
 			if (found) {
 				Log.info("Played seed calculated as " + Long.toHexString(playerSeed));
+				JOptionPane.showMessageDialog(null,"Played seed calculated as " + Long.toHexString(playerSeed) );
+				
 				btnCalculate.setText(String.format("%012X", playerSeed));
 				btnCalculate.setProgress(Float.POSITIVE_INFINITY);
 			} else {
@@ -645,6 +663,10 @@ public class EnchCrackerWindow extends StyledFrameMinecraft {
 		ProgressButton btnDone = new ProgressButton("button");
 		findEnchantment.addActionListener(event -> {
 			long seed = playerSeed;
+			if(seed==0){
+				assertform("I think the player seed is invalid.");
+			}
+			
 			if (itemToEnch[0] == null) return;
 			int maxShelvesVal = 0;
 			try {
@@ -886,7 +908,7 @@ public class EnchCrackerWindow extends StyledFrameMinecraft {
 		aboutPane.setLayout(new BoxLayout(aboutPane, BoxLayout.Y_AXIS));
 
 		JLabel aboutText1 = new JLabel(
-			"<html>Enchantment Cracker "+verText()+"<br>Original version by Earthcomputer<br>Speed and UI improvements by Hexicube<br><br>Tutorial and Explanation:</html>"
+			"<html>Enchantment Cracker "+verText()+"<br>Original version by Earthcomputer<br>Speed and UI improvements by Hexicube<br>Fucked By XGN<br>Tutorial and Explanation:</html>"
 		);
 		aboutPane.add(aboutText1);
 		JLabel youtubePage = new JLabel("<html><a href=\\\"https://youtu.be/hfiTZF0hlzw\\\">Minecraft, Vanilla Survival: Cracking the Enchantment Seed</a></html>");
@@ -940,6 +962,14 @@ public class EnchCrackerWindow extends StyledFrameMinecraft {
 		Insets i2 = rootPane.getBorder().getBorderInsets(this);
 		setSize(i.left + i.right + findSeedPanel.getSize().width + i2.left + i2.right, i.top + i.bottom + findSeedPanel.getSize().height + i2.top + i2.bottom);
 		setLocationRelativeTo(null);
+	}
+
+	private void assertform(String string) {
+		int end=JOptionPane.showConfirmDialog(this, "WARNING:\n"+string+"\nContinue?","SOFTWARE F**KED",JOptionPane.ERROR_MESSAGE+JOptionPane.YES_NO_OPTION);
+		if(end!=JOptionPane.YES_OPTION){
+			Log.fatal("Software Terminated By Bitch User");
+			System.exit(1);
+		}
 	}
 
 	private static void browse(String url) {
