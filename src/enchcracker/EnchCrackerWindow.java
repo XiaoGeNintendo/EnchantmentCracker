@@ -291,30 +291,31 @@ public class EnchCrackerWindow extends StyledFrameMinecraft {
 				slot2 = Integer.parseInt(slot2TextField.getText());
 				slot3 = Integer.parseInt(slot3TextField.getText());
 			} catch (NumberFormatException e) {
-				Log.info("Add info failed, fields had invalid numbers");
+				Log.infoWithDisplay("Add info failed, fields had invalid numbers");
 				return;
 			}
 
 			if (bookshelves < 0 || bookshelves > 15) {
-				Log.info("Add info failed, bookshelf count invalid");
+				Log.infoWithDisplay("Add info failed, bookshelf count invalid");
+				
 				bookshelvesTextField.setBackground(new Color(1.0F, 0.3F, 0.0F));
 				return;
 			}
 
 			if (slot1 < 0 || slot1 > 30) {
-				Log.info("Add info failed, slot 1 count invalid");
+				Log.infoWithDisplay("Add info failed, slot 1 count invalid");
 				slot1TextField.setBackground(new Color(1.0F, 0.3F, 0.0F));
 				return;
 			}
 
 			if (slot2 < 0 || slot2 > 30) {
-				Log.info("Add info failed, slot 2 count invalid");
+				Log.infoWithDisplay("Add info failed, slot 2 count invalid");
 				slot2TextField.setBackground(new Color(1.0F, 0.3F, 0.0F));
 				return;
 			}
 
 			if (slot3 < 0 || slot3 > 30) {
-				Log.info("Add info failed, slot 3 count invalid");
+				Log.infoWithDisplay("Add info failed, slot 3 count invalid");
 				slot3TextField.setBackground(new Color(1.0F, 0.3F, 0.0F));
 				return;
 			}
@@ -475,13 +476,13 @@ public class EnchCrackerWindow extends StyledFrameMinecraft {
 			try {
 				xpSeed1 = Integer.parseUnsignedInt(xpSeed1TextField.getText(), 16);
 			} catch (NumberFormatException e) {
-				Log.info("Calculate player seed failed, XP seed 1 invalid");
+				Log.infoWithDisplay("Calculate player seed failed, XP seed 1 invalid");
 				return;
 			}
 			try {
 				xpSeed2 = Integer.parseUnsignedInt(xpSeed2TextField.getText(), 16);
 			} catch (NumberFormatException e) {
-				Log.info("Calculate player seed failed, XP seed 2 invalid");
+				Log.infoWithDisplay("Calculate player seed failed, XP seed 2 invalid");
 				return;
 			}
 			Log.info("Calculating player seed with " + Integer.toHexString(xpSeed1) + ", "
@@ -673,14 +674,14 @@ public class EnchCrackerWindow extends StyledFrameMinecraft {
 				maxShelvesVal = Integer.parseInt(maxShelves.getText());
 			}
 			catch (NumberFormatException e) {
-				Log.info("Max shelves invalid");
+				Log.infoWithDisplay("Max shelves invalid");
 				return;
 			}
 			int playerLevel = 0;
 			try {
 				playerLevel = Integer.parseInt(levelTextField.getText());
 			} catch (NumberFormatException e) {
-				Log.info("Level invalid");
+				Log.infoWithDisplay("Level invalid");
 				return;
 			}
 

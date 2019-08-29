@@ -10,6 +10,8 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import javax.swing.JOptionPane;
+
 public class Log {
 
 	private Log() {
@@ -79,6 +81,11 @@ public class Log {
 
 	public static void fatal(String message, Throwable thrown) {
 		LOGGER.log(Level.SEVERE, message, thrown);
+	}
+
+	public static void infoWithDisplay(String string) {
+		LOGGER.info(string);
+		JOptionPane.showMessageDialog(null, string);
 	}
 
 }
